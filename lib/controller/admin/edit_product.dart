@@ -1,6 +1,6 @@
-
 import 'dart:io';
 import 'dart:math';
+import 'package:firebaseecom/constant/routs_name.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,9 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../constant/routs_name.dart';
-
-class AddProductController extends GetxController{
+class EditProductController extends GetxController{
    TextEditingController productName=TextEditingController();
    TextEditingController productNameAr=TextEditingController();
    TextEditingController count=TextEditingController();
@@ -19,15 +17,19 @@ class AddProductController extends GetxController{
    TextEditingController discount=TextEditingController();
    TextEditingController productDesc=TextEditingController();
   File? fileSelect;
+  String imageLink="";
   RxList categoryName=[].obs;
   late CollectionReference products;
   RxString dropdownvalue="TV".obs;
+  var idDocoument=Get.arguments[0];
+  var productInfo=Get.arguments[1];
 
   @override
   void onInit()async {
     super.onInit();
     await getCattName();
-    
+    imageLink=productInfo["imageLink"];
+    dropdownvalue.value=productInfo["category"];
     products=FirebaseFirestore.instance.collection("products");
     
   }
@@ -57,7 +59,8 @@ class AddProductController extends GetxController{
  
 
   Future uploadItem()async{
-    var id=Random().nextInt(100000000);
+    if(fileSelect !=null){
+          var id=Random().nextInt(100000000);
     var nameImage=basename(fileSelect!.path);
     Reference upload=FirebaseStorage.instance.ref().child("prodImage").child("${id.toString()+nameImage}");
     final UploadTask uploadTask=upload.putFile(fileSelect!);
@@ -75,9 +78,28 @@ class AddProductController extends GetxController{
       "imageLink":dounloadURL
     };
 
-    await products.add(product);
+    await products.doc(idDocoument).update(product);
     Get.offAllNamed(AppRout.adminhome);
 
+    }else{
+        
+
+    Map<String,dynamic>product={
+      "productName":productName.text,
+      "productNameAr":productNameAr.text,
+      "count":int.parse(count.text),
+      "price":int.parse(price.text),
+      "discount":int.parse(discount.text),
+      "category":dropdownvalue.value,
+      "desc":productDesc.text,
+      "active":true,
+      "imageLink":imageLink
+    };
+
+    await products.doc(idDocoument).update(product);
+    Get.offAllNamed(AppRout.adminhome);
+
+    }
 
   }
    Future<void> getCattName()async{

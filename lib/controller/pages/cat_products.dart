@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class CatProductsController extends GetxController{
-  List catproducts=[];
+  RxList catproducts=[].obs;
   String nameCat=Get.arguments[0];
-  String nameCatAr=Get.arguments[1];
 
 
       @override
@@ -25,12 +24,16 @@ class CatProductsController extends GetxController{
 
    Future getItemsCategory()async{
         try {
+      var data = await FirebaseFirestore.instance.collection("products").where("category",isEqualTo: nameCat ).get();
+
       await FirebaseFirestore.instance.collection("products").where("category",isEqualTo: nameCat ).get().then((value){
         value.docs.forEach((result)async{
          catproducts.add(result.data()); 
+         update();
         });
       });
-      update();
+      return data;
+      
 
 
     } catch (e) {

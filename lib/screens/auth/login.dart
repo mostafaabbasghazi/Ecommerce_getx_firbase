@@ -1,83 +1,57 @@
+
 import 'package:firebaseecom/constant/routs_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebaseecom/controller/auth/login.dart';
 
 import '../../constant/colors.dart';
-class Login extends StatefulWidget {
+import '../../function/vaildate.dart';
+import '../widget/custtom_text_field.dart';
+
+class Login extends StatelessWidget {
   const Login({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  @override
   Widget build(BuildContext context) {
     LoginController controller=Get.put(LoginController());
-    return Scaffold(
+    return GetBuilder<LoginController>(builder: (controller){
+      return  Scaffold(
+      appBar: AppBar(title: Text("Login",style: TextStyle(fontSize: 30),),),
       //backgroundColor: Color(0xf2f2f2f2),
-      body: Container(
+      body:  Container(
         child: ListView(children: [
-          Image.asset("images/login5.jfif",width: MediaQuery.of(context).size.width,height: 400,),
+          Image.asset("images/logo.png",width: MediaQuery.of(context).size.width/2,height: 300,),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(20),
             child: Form(
               key: controller.globalKey,
               child: Column(children: [
-            TextFormField(
-              validator: (value) {
-                if(value!.isEmpty && value!.length <5){
-                  return "Email is Empty or length less than 5";
-                }
-              },
-              controller: controller.email,
-              keyboardType: TextInputType.emailAddress,
-              
-              decoration: InputDecoration(
-               hintText: "Enter Your Email",
-            hintStyle: const TextStyle(fontSize: 14),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-            label: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 9),
-                child: Text("Email")),
-            
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
-                
-              ),
+              CustomTextForm(
+                hinttext:"Enter Your email" ,
+                labeltext: "Email",
+                iconData: Icons.email_outlined,
+                mycontroller: controller.email,
+                isNumber: false,
+                valid: (value) {
+                  return validInput(value!, 3, 300, "email");
+                },
+                ),
               SizedBox(height: 30,),
-            
-            TextFormField(
-              validator: (value) {
-                if(value!.isEmpty && value!.length <5){
-                  return "Password is Empty or length less than 5";
-                }
-              },
-              controller: controller.password,
-                keyboardType: TextInputType.visiblePassword,
-                
-              
-              decoration: InputDecoration(
-            hintText: "Enter Your Password",
-            hintStyle: const TextStyle(fontSize: 14),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-            label: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 9),
-                child: Text("Password")),
-            
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
-                
-            ),
+              CustomTextForm(
+                hinttext:"Enter Your Password" ,
+                labeltext: "Passwrd",
+                iconData: Icons.password_outlined,
+                mycontroller: controller.password,
+                isNumber: false,
+                valid: (value) {
+                  return validInput(value!, 3, 20, "password");
+                },
+                ),
             SizedBox(height: 40,),
-            InkWell(
+            controller.isLoading==false?
+                        InkWell(
               onTap: (){
-                controller.SignIn();
+                controller.signIn();
               },
               child:Container(
               padding: EdgeInsets.all(6),
@@ -90,7 +64,10 @@ class _LoginState extends State<Login> {
               child: Center(
                 child: Text("Login",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),)
             ),
+            ):Center(
+              child: CircularProgressIndicator(color: Colors.redAccent,),
             ),
+            SizedBox(height: 20,),
              Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -104,10 +81,16 @@ class _LoginState extends State<Login> {
                   color: AppColor.primaryColor, fontWeight: FontWeight.bold)),
         )
       ],
-    )
+    ),SizedBox(height: 10,),
+    InkWell(
+      onTap: () {
+        Get.offAllNamed(AppRout.forgetPassword);
+      },
+      child: Center(child: Text("Forget PAssword",style:TextStyle(fontSize: 15,color: Colors.redAccent)),),)
           ],)),)
         ],),
       ),
     );
+    });
   }
 }

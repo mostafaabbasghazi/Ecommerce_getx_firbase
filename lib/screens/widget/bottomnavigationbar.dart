@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebaseecom/constant/colors.dart';
 import 'package:firebaseecom/screens/card.dart';
 import 'package:firebaseecom/screens/home.dart';
 import 'package:firebaseecom/screens/profile.dart';
@@ -49,8 +50,8 @@ class _BottomnavigationbarState extends State<Bottomnavigationbar>{
           });
         },
         height: 65,
-        backgroundColor: Colors.white,
-        color: Colors.black,
+        backgroundColor: AppColor.grey,
+        color: AppColor.primaryColor,
         animationDuration: Duration(milliseconds: 500),
         items:const [
         Icon(Icons.home_outlined,color: Colors.white,),

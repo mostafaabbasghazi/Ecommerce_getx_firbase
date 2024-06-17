@@ -1,3 +1,5 @@
+
+import 'package:firebaseecom/constant/colors.dart';
 import 'package:firebaseecom/constant/routs_name.dart';
 import 'package:firebaseecom/controller/pages/cat_products.dart';
 import 'package:firebaseecom/screens/product_deatails.dart';
@@ -12,11 +14,13 @@ class CatProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CatProductsController controlle=Get.put(CatProductsController());
-    return Scaffold(
-      backgroundColor: Color(0xf2f2f2f2),
+    return GetBuilder<CatProductsController>(builder: (controller){
+      return  Scaffold(
+      backgroundColor: AppColor.grey,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(controlle.nameCat,style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
-        backgroundColor:Color(0xf2f2f2f2),
+        
       ),
       body: Container(
         margin: EdgeInsets.all(20),
@@ -59,5 +63,6 @@ class CatProducts extends StatelessWidget {
         )
       ),
     );
+    });
   }
 }

@@ -1,3 +1,5 @@
+
+import 'package:firebaseecom/constant/colors.dart';
 import 'package:firebaseecom/controller/pages/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,7 @@ class Onboardind extends StatelessWidget {
   Widget build(BuildContext context) {
     OnboardingController controller=OnboardingController();
     return  Scaffold(
-      backgroundColor:const Color(0xffecefe0),
+      backgroundColor:AppColor.grey,
       body: Container(
         margin:const EdgeInsets.only(top: 30.0),
         child: Column(

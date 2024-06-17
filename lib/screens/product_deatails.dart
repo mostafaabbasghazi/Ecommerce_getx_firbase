@@ -1,23 +1,21 @@
+
+import 'package:firebaseecom/constant/colors.dart';
 import 'package:firebaseecom/controller/pages/product_deatails.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class ProductDeatails extends StatefulWidget {
+class ProductDeatails extends StatelessWidget {
   const ProductDeatails({super.key});
 
   @override
-  State<ProductDeatails> createState() => _ProductDeatailsState();
-}
-
-class _ProductDeatailsState extends State<ProductDeatails> {
-  @override
   Widget build(BuildContext context) {
     ProductDeatailsController controller =Get.put(ProductDeatailsController());
-    return Scaffold(
-      backgroundColor: Color(0xf2f2f2f2),
-      body: Container(
+    return GetBuilder<ProductDeatailsController>(builder: (controller){
+      return Scaffold(
+      backgroundColor: AppColor.grey,
+      body:  Container(
         padding: EdgeInsets.only(top: 50),
       child: ListView(
         children: [
@@ -94,5 +92,6 @@ class _ProductDeatailsState extends State<ProductDeatails> {
       ),
     ),
     );
+    });
   }
 }

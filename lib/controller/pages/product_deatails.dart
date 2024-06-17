@@ -19,7 +19,7 @@ class ProductDeatailsController extends GetxController{
       "productName":Product["productName"],
       "productNameAr":Product["productNameAr"],
       "countOrder":int.parse(countOrderItem.text),
-      "price":Product["discount"]==0?Product["price"]:(Product["price"]-Product["discount"]),
+      "price":Product["discount"]==0?Product["price"].toString():(Product["price"]-Product["discount"]).toString(),
       "imageLink":Product["imageLink"],
       "finsh":false
     };

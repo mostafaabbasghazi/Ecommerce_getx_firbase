@@ -10,6 +10,7 @@ class LoginController extends GetxController{
 
   late TextEditingController email;
   late TextEditingController password;
+  bool isLoading=false;
 
   MyServices myServices = Get.find();
 
@@ -29,28 +30,47 @@ class LoginController extends GetxController{
     password.clear();
   }
 
-  Future<void> SignIn()async{
+  Future<void> _signIn()async{
+    isLoading=true;
+    var formState=globalKey.currentState;
+ 
     try {
-
+    if(formState!.validate()){
       final credential =await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: password.text);
-  
       myServices.sharedPreferences.setString("email",email.text);
       myServices.sharedPreferences.setString("userId",FirebaseAuth.instance.currentUser!.uid);
       myServices.sharedPreferences.setString("step","2");
+      isLoading=false;
       Get.toNamed(AppRout.home);
 
-
+    }else{
+      isLoading=false;
+      alert("Try agin");
+    }
     } on FirebaseAuthException catch(e) {
-        if (e.code == 'user-not-found') {
-          alert("No user found for that email.");
-  } else if (e.code == 'wrong-password') {
-    alert("Wrong password provided for that user.");
-  }
+          switch (e.code) {
+      case "invalid-email":
+       alert("invalid-email");
+        break;
+      case "wrong-password":
+      alert("wrong-password");
+        break;
+      case "email-already-in-use":
+      alert("email-already-in-use");
+        break;
+      default:
+      alert("Unkhnow Erorr");
+        
+    }
+  
 
     }catch(e){
+      isLoading=false;
       alert("Check Internet");
 
     }
   }
+
+  Future<void> Function()get signIn=>_signIn;
   
 }
