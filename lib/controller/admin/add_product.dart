@@ -66,13 +66,14 @@ class AddProductController extends GetxController{
     Map<String,dynamic>product={
       "productName":productName.text,
       "productNameAr":productNameAr.text,
-      "count":int.parse(count.text),
-      "price":int.parse(price.text),
+      "count":count.text,
+      "price":price.text,
       "discount":int.parse(discount.text),
       "category":dropdownvalue.value,
       "desc":productDesc.text,
       "active":true,
-      "imageLink":dounloadURL
+      "imageLink":dounloadURL,
+      
     };
 
     await products.add(product);

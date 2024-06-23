@@ -22,16 +22,15 @@ class CardController extends GetxController{
    
   }
  
- getCArdItems()async{
+ Future <dynamic>getCArdItems()async{
    await FirebaseFirestore.instance.collection("card").where("email",isEqualTo: FirebaseAuth.instance.currentUser!.email ).where("finsh",isEqualTo: false).get().then((value){
         for (var snapshot in value.docs) {
           docId.add(snapshot.id);
         }
-        value.docs.forEach((result)async{
-         
+        value.docs.forEach((result){
          cardItems.add(result.data());
          int price=int.parse(result.data()["price"]);
-         int count =result.data()["countOrder"]; 
+         int count =int.parse(result.data()["countOrder"]); 
          total=total +(price*count);
          
         });
@@ -44,7 +43,7 @@ class CardController extends GetxController{
    var querySnapshots = await collection.get();
 
    collection.doc(id).delete();
-   return true;
+   
  }
 
 

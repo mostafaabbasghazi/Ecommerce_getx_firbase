@@ -18,8 +18,8 @@ class ProductDeatailsController extends GetxController{
       "email":FirebaseAuth.instance.currentUser!.email, 
       "productName":Product["productName"],
       "productNameAr":Product["productNameAr"],
-      "countOrder":int.parse(countOrderItem.text),
-      "price":Product["discount"]==0?Product["price"].toString():(Product["price"]-Product["discount"]).toString(),
+      "countOrder":countOrderItem.text,
+      "price":Product["discount"]==0?Product["price"].toString():(int.parse(Product["price"])-Product["discount"]).toString(),
       "imageLink":Product["imageLink"],
       "finsh":false
     };

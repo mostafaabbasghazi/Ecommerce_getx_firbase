@@ -25,9 +25,10 @@ class Category extends GetView<HomeController> {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context,index){
                   return Container(
-                    margin: EdgeInsets.only(right: 20,top: 20),
-                    height: 70,
-                    width: 70,
+                    padding: EdgeInsets.all( 20),
+                    margin: EdgeInsets.only( top: 20,left: 20),
+                    height: 90,
+                    width: 90,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)
@@ -35,7 +36,7 @@ class Category extends GetView<HomeController> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.network(controller.category[index]["imageLink"].toString(),height: 50,fit: BoxFit.cover,),
+                        Image.network(controller.category[index]["imageLink"].toString(),height: 80,width:80,fit: BoxFit.cover,),
                         InkWell(
                           onTap: (){
                             Get.to(()=>CatProducts(),arguments: [

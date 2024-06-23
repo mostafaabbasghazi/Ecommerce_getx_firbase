@@ -17,9 +17,11 @@ class EditCategory extends StatelessWidget {
     EditCategoryController controller=Get.put(EditCategoryController());
     return GetBuilder<EditCategoryController>(builder: (controller){
       return  Scaffold(
-      appBar: AppBar(title:Text("Edit Catiegory",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
+      appBar: AppBar(
+        centerTitle: true,
+        title:const Text("Edit Catiegory",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
       body: Container(
-        margin: EdgeInsets.only(left: 20,top: 20,right: 20),
+        margin: const EdgeInsets.only(left: 20,top: 20,right: 20),
         child: ListView(
           
           children: [
@@ -35,11 +37,11 @@ class EditCategory extends StatelessWidget {
             icon: const Icon(Icons.image),
             label: const Text('Add Image'),),
             
-            SizedBox(height: 10,),
-            Divider(height: 3,color: Colors.black,thickness: 3,),
-            SizedBox(height: 10,),
-            Text("Catiegory Name:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 20,),
+            const SizedBox(height: 10,),
+            const Divider(height: 3,color: Colors.black,thickness: 3,),
+            const SizedBox(height: 10,),
+            const Text("Catiegory Name:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 20,),
             CustomTextForm(
                 hinttext:"Enter Your Category Name" ,
                 labeltext: "Category Name",
@@ -50,9 +52,9 @@ class EditCategory extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-            SizedBox(height: 20,),
-            Text("Catiegory Name Arabic:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+            const SizedBox(height: 20,),
+            const Text("Catiegory Name Arabic:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
             CustomTextForm(
                 hinttext:"Enter Category Name Arabic" ,
                 labeltext: "Category Name Arabic",
@@ -64,23 +66,23 @@ class EditCategory extends StatelessWidget {
                 },
                 ),
              
-           SizedBox(height: 30,),
+           const SizedBox(height: 30,),
             InkWell(
               onTap: (){
                 controller.uploadItem();
               },
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.redAccent,
                   borderRadius: BorderRadius.circular(20)
                 ),
-                child: Center(
+                child: const Center(
                   child: Text("Save",style: TextStyle(fontSize: 20,color: Colors.white),),
                 ),
               ),
             ),
-            SizedBox(height: 40,)
+            const SizedBox(height: 40,)
             
           ],
         ),

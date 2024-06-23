@@ -36,7 +36,7 @@ class Products extends GetView<HomeController> {
                       children: [
                         Image.network(controller.productsDiscount[index]["imageLink"],height: 120,width: 120,),
                         Text(controller.productsDiscount[index]["productName"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                        Text("\$ ${(controller.productsDiscount[index]["price"]-controller.productsDiscount[index]["discount"]).toString()}",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
+                        Text("\$ ${(int.parse(controller.productsDiscount[index]["price"])-controller.productsDiscount[index]["discount"]).toString()}",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
                         Row(
                           
                           children: [

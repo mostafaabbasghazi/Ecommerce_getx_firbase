@@ -40,6 +40,56 @@ class Profile extends StatelessWidget {
 
         ),
         SizedBox(height: 20,),
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Card(
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                ListTile(
+                  // onTap: () {},
+                  trailing: Switch(onChanged: (val) {}, value: true),
+                  title: Text("Disable Notificatios"),
+                ),
+                ListTile(
+                  onTap: () {
+                   
+                  },
+                  trailing: Icon(Icons.card_travel),
+                  title: Text("Orders"),
+                ),
+                ListTile(
+                  onTap: () {
+                    
+                  },
+                  trailing: Icon(Icons.card_travel),
+                  title: Text("Archive"),
+                ),
+                ListTile(
+                  onTap: () {
+                    
+                  },
+                  trailing: Icon(Icons.location_on_outlined),
+                  title: Text("Address"),
+                ),
+                ListTile(
+                  onTap: () {},
+                  trailing: Icon(Icons.help_outline_rounded),
+                  title: Text("About us"),
+                ),
+                ListTile(
+                  onTap: () {},
+                  trailing: Icon(Icons.phone_callback_outlined),
+                  title: Text("Contact us"),
+                ),
+                ListTile(
+                  onTap: () {
+                    controller.logOut();
+                  },
+                  title: Text("Logout"),
+                  trailing: Icon(Icons.exit_to_app),
+                ),
+              ]),
+            ),
+          )
 
 
             ],

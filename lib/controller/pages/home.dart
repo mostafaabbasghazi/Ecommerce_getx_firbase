@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController{
@@ -37,10 +38,12 @@ class HomeController extends GetxController{
   
   }
 
-  Future<void> getSearchItems(String producName)async{
+  TextEditingController search=TextEditingController();
+  Future<void> getSearchItems(String product)async{
     try {
-      var search=await FirebaseFirestore.instance.collection("products").where("productName",isEqualTo:producName ).get();
+      var search=await FirebaseFirestore.instance.collection("products").where("productName",isEqualTo:product ).get();
       search.docs.forEach((action){
+        searchItems.clear();
         searchItems.add(action.data());
         update();
       });
@@ -48,6 +51,26 @@ class HomeController extends GetxController{
       
     }
   }
+  bool isSearch = false;
+  
+  checkSearch(val) {
+    if (val == "") {
+      
+      isSearch = false;
+    }else{
+        isSearch = true; 
+    getSearchItems(val);
+    update();
+    }
+    update();
+  }
+
+  onSearchItems() {
+    isSearch = true; 
+    getSearchItems(search.text);
+    update();
+  }
+
 
   Future<void> getUserInfo()async{
     try {

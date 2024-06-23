@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../constant/colors.dart';
-
+import 'dart:async';
 class CustomItemsCartList extends StatelessWidget {
   final String name;
   final String price;
   final String count;
   final String imagename;
-  final void Function()? onRemove;
+  final Future<dynamic> onRemove;
   const CustomItemsCartList({
     Key? key,
     required this.name,
@@ -48,7 +48,9 @@ class CustomItemsCartList extends StatelessWidget {
                   )),
               Container(
                   height: 25,
-                  child: IconButton(onPressed: onRemove, icon: Icon(Icons.remove)))
+                  child: IconButton(onPressed:()async{
+                    await onRemove;
+                  } , icon: const Icon(Icons.remove)))
             ],
           ))
         ]),

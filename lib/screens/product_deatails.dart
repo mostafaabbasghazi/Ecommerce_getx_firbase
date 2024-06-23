@@ -36,7 +36,7 @@ class ProductDeatails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
               Text(controller.Product["productName"],style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-              controller.Product["discount"]==0?Text(controller.Product["price"].toString(),style: TextStyle(color: Colors.redAccent,fontSize: 23,fontWeight: FontWeight.bold),):Text("${(controller.Product["price"]-controller.Product["discount"]).toString()}",style: TextStyle(color: Colors.redAccent,fontSize: 23,fontWeight: FontWeight.bold),)],)
+             int.parse( controller.Product["discount"].toString())==0?Text(controller.Product["price"].toString(),style: TextStyle(color: Colors.redAccent,fontSize: 23,fontWeight: FontWeight.bold),):Text("${(int.parse(controller.Product["price"])-controller.Product["discount"]).toString()}",style: TextStyle(color: Colors.redAccent,fontSize: 23,fontWeight: FontWeight.bold),)],)
              ,SizedBox(height: 20,),
              Text("Deatails:",style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
              SizedBox(height: 10,),

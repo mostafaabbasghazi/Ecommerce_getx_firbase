@@ -16,7 +16,9 @@ class Login extends StatelessWidget {
     LoginController controller=Get.put(LoginController());
     return GetBuilder<LoginController>(builder: (controller){
       return  Scaffold(
-      appBar: AppBar(title: Text("Login",style: TextStyle(fontSize: 30),),),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Login",style: TextStyle(fontSize: 30),),),
       //backgroundColor: Color(0xf2f2f2f2),
       body:  Container(
         child: ListView(children: [
@@ -36,7 +38,7 @@ class Login extends StatelessWidget {
                   return validInput(value!, 3, 300, "email");
                 },
                 ),
-              SizedBox(height: 30,),
+              SizedBox(height: 20,),
               CustomTextForm(
                 hinttext:"Enter Your Password" ,
                 labeltext: "Passwrd",
@@ -47,7 +49,7 @@ class Login extends StatelessWidget {
                   return validInput(value!, 3, 20, "password");
                 },
                 ),
-            SizedBox(height: 40,),
+            SizedBox(height: 20,),
             controller.isLoading==false?
                         InkWell(
               onTap: (){
@@ -58,7 +60,7 @@ class Login extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               //margin: EdgeInsets.only(left: 40,right: 40),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(25),
                 color: Colors.redAccent
               ),
               child: Center(
@@ -86,7 +88,13 @@ class Login extends StatelessWidget {
       onTap: () {
         Get.offAllNamed(AppRout.forgetPassword);
       },
-      child: Center(child: Text("Forget PAssword",style:TextStyle(fontSize: 15,color: Colors.redAccent)),),)
+      child: Center(child: Text("Forget PAssword",style:TextStyle(fontSize: 15,color: Colors.redAccent)),),),
+      SizedBox(height: 10,),
+    InkWell(
+      onTap: () {
+        Get.toNamed(AppRout.adminLogin);
+      },
+      child: Center(child: Text("admin login",style:TextStyle(fontSize: 15,color: Colors.redAccent)),),)
           ],)),)
         ],),
       ),

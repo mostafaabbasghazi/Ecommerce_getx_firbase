@@ -40,7 +40,7 @@ class ProductsListDiscount extends GetView<HomeController> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                           Text(controller.productsDiscount[index]["productName"],style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-                          controller.productsDiscount[index]["discount"] !=0?Center(child: Text("\$ ${(controller.productsDiscount[index]["price"]-controller.productsDiscount[index]["discount"]).toString()}",
+                          controller.productsDiscount[index]["discount"] !=0?Center(child: Text("\$ ${(int.parse(controller.productsDiscount[index]["price"])-controller.productsDiscount[index]["discount"]).toString()}",
                         style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),)):Text("\$ ${controller.productsDiscount[index]["price"].toString()}",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
                         ],),
                        

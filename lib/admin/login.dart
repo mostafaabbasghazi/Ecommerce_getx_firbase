@@ -11,12 +11,15 @@ class AdminLogin extends StatelessWidget {
     LoginAdminController controller =Get.put(LoginAdminController());
     return GetBuilder<LoginAdminController>(builder: (controller){
       return Scaffold(
+        appBar: AppBar(
+        centerTitle: true,
+        title: Text("Admin Login",style: TextStyle(fontSize: 30),),),
       backgroundColor: Color(0xf2f2f2f2),
       body:  Container(
         child: ListView(children: [
-          Image.asset("images/login5.jfif",width: MediaQuery.of(context).size.width,height: 400,),
+          Image.asset("images/logo.png",width: MediaQuery.of(context).size.width/2,height: 300,),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(20),
             child: Form(
               key: controller.globalKey,
               child: Column(children: [

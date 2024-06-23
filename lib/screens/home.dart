@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebaseecom/constant/colors.dart';
@@ -24,7 +25,7 @@ class Home extends StatelessWidget{
       return  Scaffold(
       backgroundColor:AppColor.grey,
       body: Container(
-        margin: EdgeInsets.only(top: 50,left: 20,right: 20.0),
+        margin: EdgeInsets.only(top: 30,left: 20,right: 20.0),
         child: ListView(
          
           children: [
@@ -44,26 +45,32 @@ class Home extends StatelessWidget{
               ],
             ),
             SizedBox(height: 20,),
-            
-            Container(
+             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
               width: MediaQuery.of(context).size.width,
               child: TextField(
+                controller: controller.search,
                 onChanged: (value){
-                  controller.getSearchItems(value);
+                  controller.checkSearch(value);
                 },
                 decoration: InputDecoration(
                   hintText: "Search Product",
                   hintStyle: TextStyle(fontSize: 20,),
                   border:InputBorder.none,
-                  prefixIcon: Icon(Icons.search,size: 30,)
+                  prefixIcon: IconButton(icon:Icon(Icons.search,size: 30),onPressed:(){
+                    controller.onSearchItems();
+                  })
                   
                 ),
               ),
             ),
-            controller.searchItems.isEmpty
-                        ? Column(
+            !controller.isSearch? Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:[
+            
+            
+                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
                               CustomCardHome(
@@ -71,8 +78,8 @@ class Home extends StatelessWidget{
                                   body: "Cashback 20%"),
                              
                             ],
-                          )
-                        : SearchResult(products: controller.searchItems),
+                          ),
+                         
         
             SizedBox(height: 20,),
             
@@ -105,6 +112,7 @@ class Home extends StatelessWidget{
               child:Products()
             );
            })
+           ] ,):SearchResult(products: controller.searchItems),
            
           ],
         ),
@@ -113,3 +121,54 @@ class Home extends StatelessWidget{
     });
   }
 }
+//SearchResult(products: controller.searchItems),
+class SearchResult extends StatelessWidget {
+  final List products;
+  const SearchResult({super.key, required this.products});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:ListView.builder(
+       shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: products.length,
+        itemBuilder: (context,index) {
+          return Card(
+            
+            margin: EdgeInsets.only(top: 30),
+      child: Container(
+        margin: EdgeInsets.only(right: 10),
+        child: Row(
+          children: [
+          
+          Expanded(
+              flex: 2,
+              child: CachedNetworkImage(
+                imageUrl: products[index]["imageLink"],
+                height: 80,
+              )),
+          
+         
+               Expanded(
+                flex: 1,
+                child: InkWell(
+                            onTap: (){
+                              Get.to(()=>ProductDeatails(),arguments:[products[index] ]);
+                            },
+                            child:  Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(color: Colors.redAccent,borderRadius: BorderRadius.circular(8)),
+                              child: Icon(Icons.add,size: 25,color: Colors.white,),
+                            ),
+                           ))
+            ],
+          ))
+          );
+  }),
+    );
+        }
+
+       
+
+  }

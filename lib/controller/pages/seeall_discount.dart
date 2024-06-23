@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebaseecom/constant/routs_name.dart';
+import 'package:firebaseecom/servies/servies.dart';
 import 'package:get/get.dart';
 
 class SeeallDiscountController extends GetxController{
 
   List<Map<String,dynamic>> productsDiscount=[];
-
+  MyServices services=Get.find();
 
     @override
   void onInit()async {
@@ -21,9 +24,7 @@ class SeeallDiscountController extends GetxController{
   }
 
 
-
-
-
+  
  
 
   Future getItemsDiscount()async{

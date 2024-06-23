@@ -39,6 +39,7 @@ class LoginAdminController extends GetxController{
       FirebaseFirestore.instance.collection("users").get().then((value){
         value.docs.forEach((result)async{
           if(result.data()["email"]==email.text && result.data()["isAdmin"]==true ){
+            Get.toNamed(AppRout.adminhome);
           }
         });
       });

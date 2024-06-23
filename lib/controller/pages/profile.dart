@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebaseecom/constant/routs_name.dart';
 import 'package:firebaseecom/servies/servies.dart';
 
 import 'package:get/get.dart';
@@ -30,6 +31,12 @@ class ProfileController extends GetxController{
   void onClose() {
     super.onClose();
    
+  }
+  logOut()async{
+    await FirebaseAuth.instance.signOut();
+    await services.sharedPreferences.clear();
+    Get.offAllNamed(AppRout.login);
+
   }
   getUserInfo()async{
     var data=await FirebaseFirestore.instance.collection("users").where("userId",isEqualTo: services.sharedPreferences.getString("userId")).get().then((onValue){

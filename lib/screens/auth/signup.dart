@@ -18,7 +18,9 @@ class SignUp extends StatelessWidget {
     SignUpController controller =Get.put(SignUpController());
     return GetBuilder<SignUpController>(builder: (controller){
       return Scaffold(
-      appBar: AppBar(title: Text("SignUp",style: TextStyle(fontSize: 30),),),
+      appBar: AppBar(
+        centerTitle: true,
+        title:const Text("SignUp",style: TextStyle(fontSize: 30),),),
       backgroundColor: Color(0xf2f2f2f2),
       body: Container(
         margin: EdgeInsets.all(20),

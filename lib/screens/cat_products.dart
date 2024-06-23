@@ -45,7 +45,7 @@ class CatProducts extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                           Text(controller.catproducts[index]["productName"],style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-                          controller.catproducts[index]["discount"] !=0?Center(child: Text("\$ ${(controller.catproducts[index]["price"]-controller.catproducts[index]["discount"]).toString()}",
+                          controller.catproducts[index]["discount"].toString() !=0?Center(child: Text("\$ ${(int.parse(controller.catproducts[index]["price"])-controller.catproducts[index]["discount"]).toString()}",
                         style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),)):Text("\$ ${controller.catproducts[index]["price"].toString()}",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
                         ],),
                       

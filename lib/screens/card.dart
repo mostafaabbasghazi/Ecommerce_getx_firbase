@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebaseecom/constant/colors.dart';
 import 'package:firebaseecom/constant/routs_name.dart';
 import 'package:firebaseecom/controller/pages/card.dart';
@@ -53,12 +54,45 @@ class CardProduct extends StatelessWidget {
             return ListView.builder(
         itemCount:controller.cardItems.length ,
         itemBuilder: (context,index){
-          return CustomItemsCartList(
-            name: controller.cardItems[index]["productName"],
-           price: (int.parse(controller.cardItems[index]["price"]) * controller.cardItems[index]["countOrder"]).toString(),
-           count: controller.cardItems[index]["countOrder"].toString(),
-            imagename: controller.cardItems[index]["imageLink"],
-            onRemove: controller.deleteItem(controller.docId[index]));
+          return Card(
+            margin: EdgeInsets.only(bottom: 20),
+      child: Container(
+        
+        child: Row(children: [
+          Expanded(
+              flex: 2,
+              child: CachedNetworkImage(
+                imageUrl: controller.cardItems[index]["imageLink"],
+                height: 80,
+              )),
+          Expanded(
+              flex: 3,
+              child: ListTile(
+                title: Text(controller.cardItems[index]["productName"], style: TextStyle(fontSize: 20)),
+                subtitle: Text((int.parse(controller.cardItems[index]["price"]) * int.parse(controller.cardItems[index]["countOrder"])).toString(),
+                    style:
+                        TextStyle(color: AppColor.primaryColor, fontSize: 17)),
+              )),
+          Expanded(
+              child: Column(
+            children: [
+           
+              Container(
+                  height: 30,
+                  child: Text(
+                     controller.cardItems[index]["countOrder"].toString(),
+                    style: TextStyle(fontFamily: "sans"),
+                  )),
+              Container(
+                  height: 25,
+                  child: IconButton(onPressed:(){
+                     controller.deleteItem(controller.docId[index]);
+                  } , icon: const Icon(Icons.delete)))
+            ],
+          ))
+        ]),
+      ),
+    );
         });
           } ,)),
     );

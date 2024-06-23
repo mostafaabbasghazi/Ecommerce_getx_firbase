@@ -17,9 +17,11 @@ class AddProduct extends StatelessWidget {
     AddProductController controller =Get.put(AddProductController());
     return GetBuilder<AddProductController>(builder: (controller){
       return Scaffold(
-      appBar: AppBar(title:Text("Add Product",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
+      appBar: AppBar(
+        centerTitle: true,
+        title:const Text("Add Product",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
       body: Container(
-        margin: EdgeInsets.only(left: 20,top: 20,right: 20),
+        margin: const EdgeInsets.only(left: 20,top: 20,right: 20),
         child: ListView(
           
           children: [
@@ -35,11 +37,11 @@ class AddProduct extends StatelessWidget {
             icon: const Icon(Icons.image),
             label: const Text('Add Image'),),
             
-            SizedBox(height: 10,),
-            Divider(height: 3,color: Colors.black,thickness: 3,),
-            SizedBox(height: 10,),
-            Text("Product Name:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 20,),
+            const SizedBox(height: 10,),
+            const Divider(height: 3,color: Colors.black,thickness: 3,),
+            const SizedBox(height: 10,),
+            const Text("Product Name:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 20,),
             CustomTextForm(
                 hinttext:"Enter Your Product Name" ,
                 labeltext: "Product Name",
@@ -50,9 +52,9 @@ class AddProduct extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-            SizedBox(height: 20,),
-            Text("Product Name Arabic:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+            const SizedBox(height: 20,),
+            const Text("Product Name Arabic:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
             CustomTextForm(
                 hinttext:"Enter Your Product Name Arabic" ,
                 labeltext: "Product Name Arabic",
@@ -63,9 +65,9 @@ class AddProduct extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-                        SizedBox(height: 20,),
-            Text("Product desciption:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+                        const SizedBox(height: 20,),
+            const Text("Product desciption:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
             CustomTextForm(
                 hinttext:"Enter Your Description" ,
                 labeltext: "Description",
@@ -76,9 +78,9 @@ class AddProduct extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-             SizedBox(height: 20,),
-            Text("Product Count:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+             const SizedBox(height: 20,),
+            const Text("Product Count:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
             CustomTextForm(
                 hinttext:"Enter Your Product Count" ,
                 labeltext: "Produc Count",
@@ -89,9 +91,9 @@ class AddProduct extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-             SizedBox(height: 20,),
-            Text("Product Price:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+             const SizedBox(height: 20,),
+            const Text("Product Price:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
             CustomTextForm(
                 hinttext:"Enter Your Product Price" ,
                 labeltext: "Product Price",
@@ -102,9 +104,9 @@ class AddProduct extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-             SizedBox(height: 20,),
-            Text("Product Discount:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+             const SizedBox(height: 20,),
+            const Text("Product Discount:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
             CustomTextForm(
                 hinttext:"Enter Your Product Discount" ,
                 labeltext: "Product Discount",
@@ -115,9 +117,9 @@ class AddProduct extends StatelessWidget {
                   return validInput(value!, 3, 20, "");
                 },
                 ),
-            SizedBox(height: 20,),
-            Text("Chose Category:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-            SizedBox(height: 10,),
+            const SizedBox(height: 20,),
+            const Text("Chose Category:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 10,),
            GetBuilder<AddProductController>(
             
             builder:(controllerr){
@@ -152,24 +154,24 @@ class AddProduct extends StatelessWidget {
               )
             );
             }
-            ),SizedBox(height: 30,),
+            ),const SizedBox(height: 30,),
             InkWell(
               onTap: (){
                 controller.uploadItem();
                 
               },
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.redAccent,
                   borderRadius: BorderRadius.circular(20)
                 ),
-                child: Center(
+                child: const Center(
                   child: Text("Save",style: TextStyle(fontSize: 20,color: Colors.white),),
                 ),
               ),
             ),
-            SizedBox(height: 40,)
+            const SizedBox(height: 40,)
             
           ],
         ),

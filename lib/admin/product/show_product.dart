@@ -15,17 +15,17 @@ class ShowProduct extends StatelessWidget {
       return Scaffold(
         backgroundColor: AppColor.grey,
         appBar: AppBar(
-          title: Text("All Products",style: TextStyle(fontSize: 26),),
+          title: const Text("All Products",style: TextStyle(fontSize: 26),),
           centerTitle: true,
         ),
         body:  Container(
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
                   child:FutureBuilder<QuerySnapshot>(
                     future:FirebaseFirestore.instance.collection("products").get() ,
                     builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
-                      if (snapshot.hasError) {return Center(child:Text('Error Try Again') ,);}
+                      if (snapshot.hasError) {return const Center(child:Text('Error Try Again') ,);}
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return  Center(child:CircularProgressIndicator(color: Colors.blue,));
+                        return  const Center(child:CircularProgressIndicator(color: Colors.blue,));
                       }
                       if(snapshot.hasData){
                         return ListView.builder(
@@ -35,19 +35,19 @@ class ShowProduct extends StatelessWidget {
                           itemBuilder: (context,index){
                               return
                                 Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10)
                                   ),
                                   child:ListTile(
-                                      title: Text("name:${controller.products[index]["productName"]}",style: TextStyle(fontSize: 18),),
-                                      subtitle:Text("category:${controller.products[index]["category"]}",style: TextStyle(fontSize: 15)) ,
+                                      title: Text("name:${controller.products[index]["productName"]}",style: const TextStyle(fontSize: 18),),
+                                      subtitle:Text("category:${controller.products[index]["category"]}",style: const TextStyle(fontSize: 15)) ,
                                       leading: IconButton(onPressed: (){
-                                        Get.to(()=>EditProduct(),arguments: [controller.docId[index],controller.products[index]]);
-                                      }, icon: Icon(Icons.edit,color: Colors.blueAccent,)),
+                                        Get.to(()=>const EditProduct(),arguments: [controller.docId[index],controller.products[index]]);
+                                      }, icon: const Icon(Icons.edit,color: Colors.blueAccent,)),
                                       trailing:
-                                      IconButton(icon: Icon(Icons.delete,color: Colors.red,),onPressed: ()async{
+                                      IconButton(icon: const Icon(Icons.delete,color: Colors.red,),onPressed: ()async{
                                         
                                         var collection = FirebaseFirestore.instance
                                             .collection('products');
@@ -64,7 +64,7 @@ class ShowProduct extends StatelessWidget {
 
                           },);
                       }
-                      return Text("");
+                      return const Text("");
                     },
                   ))
            ,
